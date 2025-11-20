@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuleiro Tarciana e Thiago</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="backgroundMusic" loop></audio>
+
+    <div class="container">
+        
+        <div class="spinner-container">
+            <div class="spinner-wheel" id="spinnerWheel">
+                <div class="segment"><span class="segment-text">O dia foi<br>incrível</span></div>     
+                <div class="segment"><span class="segment-text">O dia foi<br>péssimo</span></div>      
+                <div class="segment"><span class="segment-text">A comida<br>estava ótima</span></div>   
+                <div class="segment"><span class="segment-text">A comida<br>estava estranha</span></div> 
+                <div class="segment"><span class="segment-text">Vários sorrisos</span></div>        
+                <div class="segment"><span class="segment-text">Cara feia</span></div>              
+                <div class="segment"><span class="segment-text">Dia ensolarado</span></div>        
+                <div class="segment"><span class="segment-text">Choveu</span></div>                
+                <div class="segment"><span class="segment-text">Curtiram uma<br>música legal</span></div> 
+                <div class="segment"><span class="segment-text">Música ruim<br>no ambiente</span></div> 
+                <div class="segment"><span class="segment-text">Dedada na<br>bochecha</span></div>    
+                <div class="segment"><span class="segment-text">A brincadeira<br>machucou</span></div> 
+            </div>
+            <div class="spinner-indicator"></div>
+            <button class="spin-button" id="spinButton">GIRAR</button>
+        </div>
+
+        <div class="counter-container">
+            <div class="counter-display" id="counterDisplay">000</div>
+            <div class="counter-controls">
+                <button class="counter-button" id="decreaseButton">-</button>
+                <button class="counter-button" id="increaseButton">+</button>
+            </div>
+        </div>
+        
+        <div class="audio-controls">
+            <button id="startMusicButton" class="spin-button">🎶 Iniciar Música</button>
+            <label for="volumeSlider">Volume:</label>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    </div>
+
+    <div class="overlay" id="phraseOverlay">
+        <p class="overlay-text" id="overlayPhrase"></p>
+    </div>
+
+    <audio id="spinSound" src="roleta.mp3"></audio>
+    <audio id="countUpSound" src="aumentar contador.mp3"></audio>
+    <audio id="countDownSound" src="diminuir contador.mp3"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
