@@ -1,53 +1,31 @@
-/* Cores e Configurações Globais */
+/* ----------- CONFIGURAÇÕES GLOBAIS ----------- */
+
 :root {
     --lilac: #C8A2C8;
     --red: #BB0B0B;
     --dark-overlay: rgba(0, 0, 0, 0.9);
-    --wheel-size: 800px; /* Tamanho padrão */
-    --segment-count: 12;
+    --wheel-size: 700px; 
     --segment-angle: 30deg;
 }
 
-/* 1. Estilos Gerais e Fundo Responsivo */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+/* Layout principal agora é em coluna */
+.container {
+    width: 100%;
     height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    display: block;
-    transition: background-image 0.5s ease;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-top: 30px;
 }
 
-/* Fundo paisagem */
-@media (orientation: landscape) {
-    body { background-image: url('Fundo horisontal.jpg'); }
-}
+/* ----------- ROLETA ----------- */
 
-/* Fundo retrato */
-@media (orientation: portrait) {
-    body { background-image: url('Fundo vertical.jpg'); }
-}
-
-.title, .subtitle { display: none; }
-
-/* 2. Roleta */
 .spinner-container {
-    position: absolute;
     width: var(--wheel-size);
     height: var(--wheel-size);
-    border-radius: 50%;
-    z-index: 50;
-
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
+    position: relative;
 }
 
 .spinner-wheel {
@@ -56,10 +34,10 @@ body {
     border-radius: 50%;
     position: relative;
     transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
-
     transform: rotate(-45deg);
 }
 
+/* Segmentos */
 .segment {
     position: absolute;
     width: 20%;
@@ -73,203 +51,134 @@ body {
 .segment:nth-child(odd) { background-color: var(--lilac); }
 .segment:nth-child(even) { background-color: var(--red); }
 
-.segment:nth-child(1) { transform: rotate(calc(var(--segment-angle) * 0)); z-index: 12; }
-.segment:nth-child(2) { transform: rotate(calc(var(--segment-angle) * 1)); z-index: 11; }
-.segment:nth-child(3) { transform: rotate(calc(var(--segment-angle) * 2)); z-index: 10; }
-.segment:nth-child(4) { transform: rotate(calc(var(--segment-angle) * 3)); z-index: 9; }
-.segment:nth-child(5) { transform: rotate(calc(var(--segment-angle) * 4)); z-index: 8; }
-.segment:nth-child(6) { transform: rotate(calc(var(--segment-angle) * 5)); z-index: 7; }
-.segment:nth-child(7) { transform: rotate(calc(var(--segment-angle) * 6)); z-index: 6; }
-.segment:nth-child(8) { transform: rotate(calc(var(--segment-angle) * 7)); z-index: 5; }
-.segment:nth-child(9) { transform: rotate(calc(var(--segment-angle) * 8)); z-index: 4; }
-.segment:nth-child(10) { transform: rotate(calc(var(--segment-angle) * 9)); z-index: 3; }
-.segment:nth-child(11) { transform: rotate(calc(var(--segment-angle) * 10)); z-index: 2; }
-.segment:nth-child(12) { transform: rotate(calc(var(--segment-angle) * 11)); z-index: 1; }
+.segment:nth-child(1)  { transform: rotate(0deg); }
+.segment:nth-child(2)  { transform: rotate(30deg); }
+.segment:nth-child(3)  { transform: rotate(60deg); }
+.segment:nth-child(4)  { transform: rotate(90deg); }
+.segment:nth-child(5)  { transform: rotate(120deg); }
+.segment:nth-child(6)  { transform: rotate(150deg); }
+.segment:nth-child(7)  { transform: rotate(180deg); }
+.segment:nth-child(8)  { transform: rotate(210deg); }
+.segment:nth-child(9)  { transform: rotate(240deg); }
+.segment:nth-child(10) { transform: rotate(270deg); }
+.segment:nth-child(11) { transform: rotate(300deg); }
+.segment:nth-child(12) { transform: rotate(330deg); }
 
-.segment-text {
-    position: absolute;
-    top: 30%;
-    left: -100%;
-    width: 200%;
-    text-align: center;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    transform: rotate(90deg);
-    transform-origin: 60% 150%;
-    padding: 5px;
-    text-shadow: 1px 1px 2px #000;
-    line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
+/* Indicador */
 .spinner-indicator {
     position: absolute;
-    top: 0;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 0;
-    height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 25px solid white;
-    z-index: 60;
+    border-bottom: 25px solid white;
+    z-index: 100;
 }
 
+/* Botão girar */
 .spin-button {
-    position: absolute;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    background-color: white;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: white;
     color: black;
+    font-size: 1.4em;
+    border-radius: 10px;
+    cursor: pointer;
     border: none;
-    border-radius: 5px;
-    z-index: 55;
-    transition: background-color 0.3s;
 }
-.spin-button:hover:not(:disabled) { background-color: var(--lilac); }
-.spin-button:disabled { cursor: not-allowed; opacity: 0.6; }
 
-/* 3. Contador */
+/* ----------- CONTADOR ----------- */
+
 .counter-container {
-    position: absolute;
-    width: 250px;
+    background-color: rgba(0,0,0,0.4);
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 25px;
+    width: 260px;
+    border-radius: 20px;
     text-align: center;
-    z-index: 50;
-
-    top: 70%;
-    right: 35%;
-    transform: translate(50%, -50%);
 }
 
 .counter-display {
     font-size: 4em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    background-color: #222;
-    border-radius: 8px;
-    letter-spacing: 5px;
+    background: #222;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.counter-controls { display: flex; justify-content: space-around; }
+.counter-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .counter-button {
     width: 60px;
     height: 60px;
     font-size: 2em;
-    cursor: pointer;
-    background-color: var(--red);
+    background: var(--red);
+    border-radius: 50%;
     color: white;
     border: none;
-    border-radius: 50%;
 }
-.counter-button:hover { background-color: #ff3333; }
 
-/* 4. Overlay das frases */
+/* ----------- ÁUDIO ----------- */
+
+.audio-controls {
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* ----------- OVERLAY ----------- */
+
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--dark-overlay);
+    background: var(--dark-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.5s ease;
-    cursor: pointer;
+    transition: 0.3s;
+    z-index: 200;
 }
-.overlay.active { opacity: 1; visibility: visible; }
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 .overlay-text {
-    font-size: 4em;
-    font-weight: bold;
-    color: white;
+    font-size: 3em;
     padding: 20px;
-    text-align: center;
-    transform: translateY(50px);
-    opacity: 0;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    max-width: 90%;
-}
-.overlay.active .overlay-text { transform: translateY(0); opacity: 1; }
-
-/* 5. Controles de Áudio */
-.audio-controls {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    color: white;
-    z-index: 50;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
 }
 
-#startMusicButton { margin: 0; width: auto; order: 1; }
-#volumeSlider { width: 150px; order: 2; }
-.audio-controls label { order: 3; font-size: 0.8em; }
+/* ----------- RESPONSIVO ----------- */
 
-/* ==========================
-   RESPONSIVIDADE (CORRIGIDO)
-   ========================== */
 @media (max-width: 768px) {
 
     :root {
         --wheel-size: 80vw;
     }
 
-    .spinner-container {
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .spin-button {
-        bottom: -40px;
-        font-size: 1em;
-        padding: 8px 16px;
+    .container {
+        gap: 25px;
     }
 
     .counter-container {
-        width: 60vw;
-        padding: 15px;
-        top: 85%;
-        left: 50%;
-        right: unset;
-        transform: translateX(-50%);
-    }
-
-    .counter-display {
-        font-size: 2.5em;
-    }
-
-    .counter-button {
-        width: 45px;
-        height: 45px;
-        font-size: 1.5em;
+        width: 70vw;
     }
 
     .audio-controls {
-        bottom: 80px;
+        width: 70vw;
     }
 
     .overlay-text {
-        font-size: 2.5em;
+        font-size: 2em;
     }
 }
